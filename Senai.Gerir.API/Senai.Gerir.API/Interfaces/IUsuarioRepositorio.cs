@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Senai.Gerir.API.Interfaces
 {
-    interface IAlunoRepositorio
+    interface IUsuarioRepositorio
     {
         /// <summary>
         /// Cadastra um usuário
@@ -14,13 +14,13 @@ namespace Senai.Gerir.API.Interfaces
         /// <param name="usuario">Contém os dados do usuário</param>
         /// <returns></returns>
         Usuario Cadastrar(Usuario usuario);
+
         /// <summary>
         /// Logar na conta
         /// </summary>
         /// <param name="email"></param>
         /// <param name="senha"></param>
-        /// <returns></returns>
-
+        /// <returns>Retorna usuário</returns>
         Usuario Logar(string email, string senha);
 
         /// <summary>
