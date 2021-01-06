@@ -19,13 +19,16 @@ namespace Senai.Gerir.API.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+        //Criação do objeto _usuarioRepositorio
         private readonly IUsuarioRepositorio _usuarioRepositorio;
 
         public UsuarioController()
         {
+            //Instanciamento do objeto _usuarioRepositorio
             _usuarioRepositorio = new UsuarioRepositorio();
         }
 
+        //Endpoint Cadastrar
         [HttpPost]
         public IActionResult Cadastrar(Usuario usuario)
         {
@@ -37,12 +40,11 @@ namespace Senai.Gerir.API.Controllers
             }
             catch (System.Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }
 
-
+        //Endpoint Logar
         [HttpPost("logar")]
         public IActionResult Logar(Usuario usuario)
         {
@@ -68,6 +70,8 @@ namespace Senai.Gerir.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        //JWT
         private string GerarJsonWebToken(Usuario usuario)
         {
             //Chave de Segurança
@@ -95,6 +99,7 @@ namespace Senai.Gerir.API.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     
+        //Endpoint MeusDados
         [Authorize]
         [HttpGet]
         public IActionResult MeusDados()
@@ -116,9 +121,9 @@ namespace Senai.Gerir.API.Controllers
             }
         }
 
-     [Authorize]
-     [HttpPut]
-
+        //Endpoint Editar
+        [Authorize]
+        [HttpPut]
         public IActionResult Editar(Usuario usuario)
         {
             try
@@ -140,9 +145,9 @@ namespace Senai.Gerir.API.Controllers
             }
         }
 
+        //Endpoint Remover
         [Authorize]
         [HttpDelete]
-
         public IActionResult Remover()
         {
             try
@@ -151,7 +156,6 @@ namespace Senai.Gerir.API.Controllers
                 var claimsUsuario = HttpContext.User.Claims;
 
                 //Pegar o id do usuario do Claim JTI
-              
                 var usuarioid = claimsUsuario.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti);
 
                 _usuarioRepositorio.Remover(new Guid(usuarioid.Value));

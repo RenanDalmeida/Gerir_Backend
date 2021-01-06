@@ -12,7 +12,7 @@ namespace Senai.Gerir.API.Interfaces
         /// Cadastra um usuário
         /// </summary>
         /// <param name="usuario">Contém os dados do usuário</param>
-        /// <returns></returns>
+        /// <returns>Retorna um usuário</returns>
         Usuario Cadastrar(Usuario usuario);
 
         /// <summary>

@@ -6,46 +6,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace Senai.Gerir.API.Repositorios
 {
-    public class UsuarioRepositorio : IUsuarioRepositorio
+    public class TarefaRepositorio : ITarefaRepositorio
     {
+
         /* Declarando um objeto do tipo GerirContext que será a representação
         do banco de dados*/
         private readonly GerirContext _context;
 
-        public UsuarioRepositorio()
-        {
-            //Cria uma instância de GerirContext
+        public TarefaRepositorio()
+    {
+            //Instanciando GerirContext
             _context = new GerirContext();
+    }
+        public Tarefa AlterarStatus(Guid IdTarefa)
+        {
+            throw new NotImplementedException();
         }
 
-        public Usuario BuscarPorId(Guid id)
+        public Tarefa BuscarPorId(Guid IdTarefa)
         {
             try
             {
-                var usuario = _context.Usuarios.Find(id);
+                var tarefa = _context.Tarefas.Find(IdTarefa);
 
-                return usuario;
+                return tarefa;
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
 
-        public Usuario Cadastrar(Usuario usuario)
+        public Tarefa Cadastrar(Tarefa tarefa)
         {
             try
             {
                 //Adiciona um usuário ao DbSet Usuarios do contexto
-                _context.Usuarios.Add(usuario);
+                _context.Tarefas.Add(tarefa);
                 //Salva as alterações do contexto
                 _context.SaveChanges();
 
-                return usuario;
+                return tarefa;
             }
             catch (Exception ex)
             {
@@ -53,27 +56,24 @@ namespace Senai.Gerir.API.Repositorios
             }
         }
 
-        public Usuario Editar(Usuario usuario)
+        public Tarefa Editar(Tarefa tarefa)
         {
             try
             {
                 //Busca o usuário no banco
-                var usuarioexiste = BuscarPorId(usuario.Id);
+                var tarefaexiste = BuscarPorId(tarefa.Id);
                 //Verifica se existe
-                if (usuarioexiste == null)
-                        throw new Exception("Usuário não encontrado");
+                if (tarefaexiste == null)
+                    throw new Exception("Usuário não encontrado");
                 //Altera os valores do usuário
-                usuarioexiste.Nome = usuario.Nome;
-                usuarioexiste.Email = usuario.Email;
-
-                if (!string.IsNullOrEmpty(usuario.Senha))
-                    usuarioexiste.Senha = usuario.Senha;
-
+                tarefaexiste.Descricao = tarefa.Descricao;
+                tarefaexiste.Categoria = tarefa.Categoria;
+                                               
                 //Altera e salva o banco
-                _context.Usuarios.Update(usuarioexiste);
+                _context.Tarefas.Update(tarefaexiste);
                 _context.SaveChanges();
 
-                return usuarioexiste;
+                return tarefaexiste;
             }
             catch (Exception ex)
             {
@@ -81,28 +81,18 @@ namespace Senai.Gerir.API.Repositorios
             }
         }
 
-        public Usuario Logar(string email, string senha)
+        public List<Tarefa> ListarTodos(Guid IdUsuario)
         {
-            try
-            {
-                var usuario = _context.Usuarios
-                              .FirstOrDefault(c => c.Email == email && c.Senha == senha);
-
-                return usuario;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
 
-        public void Remover(Guid id)
+        public void Remover(Guid IdTarefa)
         {
             try
             {
-                var usuario = BuscarPorId(id);
+                var tarefa = BuscarPorId(IdTarefa);
 
-                _context.Usuarios.Remove(usuario);
+                _context.Tarefas.Remove(tarefa);
                 _context.SaveChanges();
             }
             catch (Exception ex)
