@@ -28,13 +28,21 @@ namespace Senai.Gerir.API.Controllers
             _tarefaRepositorio = new TarefaRepositorio();
         }
 
-
+        //Endpoint Cadastrar
+        [Authorize]
         [HttpPost]
-
         public IActionResult Cadastrar(Tarefa tarefa)
         {
             try
             {
+
+                //Pega o valor do usuario que esta logado
+                var usuarioid = HttpContext.User.Claims.FirstOrDefault(
+                    c => c.Type == JwtRegisteredClaimNames.Jti);
+
+                //Atribui o usuário a tarefa
+                tarefa.UsuarioId = new System.Guid(usuarioid.Value);
+
                 _tarefaRepositorio.Cadastrar(tarefa);
 
                 return Ok(tarefa);
@@ -48,11 +56,24 @@ namespace Senai.Gerir.API.Controllers
 
         //Endpoint Editar
         [Authorize]
-        [HttpPut]
-        public IActionResult Editar(Tarefa tarefa)
+        [HttpPut("{id}")]
+        public IActionResult Editar(Guid id,Tarefa tarefa)
         {
             try
-            { 
+            {
+
+                var usuarioid = HttpContext.User.Claims.FirstOrDefault(
+                    c => c.Type == JwtRegisteredClaimNames.Jti);
+
+                var tarefaexiste = _tarefaRepositorio.BuscarPorId(id);
+                
+                if (tarefa == null)
+                    return NotFound();
+
+                if (tarefaexiste.UsuarioId != new Guid(usuarioid.Value))
+                    return Unauthorized("Usuário sem permissão");
+
+                tarefa.Id = id;
                 _tarefaRepositorio.Editar(tarefa);
 
                 return Ok(tarefa);
@@ -62,7 +83,7 @@ namespace Senai.Gerir.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
         //Endpoint Remover
         [Authorize]
         [HttpDelete("{IdTarefa}")]
@@ -71,6 +92,17 @@ namespace Senai.Gerir.API.Controllers
         {
             try
             {
+
+                var tarefa = _tarefaRepositorio.BuscarPorId(IdTarefa);
+                var usuarioid = HttpContext.User.Claims.FirstOrDefault(
+                    c => c.Type == JwtRegisteredClaimNames.Jti);
+
+                if (tarefa == null)
+                    return NotFound();
+
+                if (tarefa.UsuarioId != new Guid(usuarioid.Value))
+                    return Unauthorized("Usuário sem permissão");
+
                 _tarefaRepositorio.Remover(IdTarefa);
 
                 return Ok();
@@ -81,6 +113,83 @@ namespace Senai.Gerir.API.Controllers
             }
         }
 
-      
+        //Endpoint ListarTodos
+        [Authorize]
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            try
+            {
+                //Pega o valor do usuario que esta logado
+                var usuarioid = HttpContext.User.Claims.FirstOrDefault(
+                    c => c.Type == JwtRegisteredClaimNames.Jti);
+
+                //Atribui o usuário a tarefa
+                var tarefas = _tarefaRepositorio.Listar(
+                                        new System.Guid(usuarioid.Value)).ToList();
+
+                return Ok(tarefas);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        [Authorize]
+        /*api/tarefa/id*/
+        [HttpGet("{id}")]
+
+        public IActionResult BuscarPorId(Guid id)
+        {
+            try
+            {
+                var tarefa = _tarefaRepositorio.BuscarPorId(id);
+                var usuarioid = HttpContext.User.Claims.FirstOrDefault(
+                    c => c.Type == JwtRegisteredClaimNames.Jti);
+
+                if (tarefa == null)
+                    return NotFound();
+
+                if (tarefa.UsuarioId != new Guid(usuarioid.Value))
+                    return Unauthorized("Usuário sem permissão");
+
+                return Ok(tarefa);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [Authorize]
+        //api/tarefa/status/idTarefa
+        [HttpPut("status/{IdTarefa}")]
+        public IActionResult AlterarStatus(Guid IdTarefa)
+        {
+            try
+            {
+                var tarefa = _tarefaRepositorio.BuscarPorId(IdTarefa);
+                var usuarioid = HttpContext.User.Claims.FirstOrDefault(
+                    c => c.Type == JwtRegisteredClaimNames.Jti);
+
+                if (tarefa == null)
+                    return NotFound();
+
+                if (tarefa.UsuarioId != new Guid(usuarioid.Value))
+                    return Unauthorized("Usuário sem permissão");
+
+                _tarefaRepositorio.AlterarStatus(IdTarefa);
+
+                return Ok(tarefa);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Senai.Gerir.API.Interfaces
         /// </summary>
         /// <param name="IdUsuario"></param>
         /// <returns>Retorna todas as tarefas</returns>
-        List<Tarefa> ListarTodos(Guid IdUsuario);
+        List<Tarefa> Listar(Guid IdUsuario);
 
         /// <summary>
         /// Altera o status da tarefa

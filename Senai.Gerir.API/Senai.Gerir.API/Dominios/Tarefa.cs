@@ -11,6 +11,7 @@ namespace Senai.Gerir.API.Dominios
         public Tarefa()
         {
             Id = Guid.NewGuid();
+            Status = false;
         }
 
         public Guid Id { get; set; }

@@ -22,7 +22,24 @@ namespace Senai.Gerir.API.Repositorios
     }
         public Tarefa AlterarStatus(Guid IdTarefa)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var tarefa = BuscarPorId(IdTarefa);
+
+                //Altera o valor do status conforme estiver no banco
+                //Se estiver true o inverso é falso e vice-versa
+                tarefa.Status = !tarefa.Status;
+
+                _context.Tarefas.Update(tarefa);
+                _context.SaveChanges();
+
+                return tarefa;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         public Tarefa BuscarPorId(Guid IdTarefa)
@@ -43,7 +60,7 @@ namespace Senai.Gerir.API.Repositorios
         {
             try
             {
-                //Adiciona um usuário ao DbSet Usuarios do contexto
+                //Adiciona um usuário ao DbSet Tarefas do contexto
                 _context.Tarefas.Add(tarefa);
                 //Salva as alterações do contexto
                 _context.SaveChanges();
@@ -68,6 +85,8 @@ namespace Senai.Gerir.API.Repositorios
                 //Altera os valores do usuário
                 tarefaexiste.Descricao = tarefa.Descricao;
                 tarefaexiste.Categoria = tarefa.Categoria;
+                tarefaexiste.Dataentrega = tarefa.Dataentrega;
+                tarefaexiste.Titulo = tarefa.Titulo;
                                                
                 //Altera e salva o banco
                 _context.Tarefas.Update(tarefaexiste);
@@ -81,9 +100,20 @@ namespace Senai.Gerir.API.Repositorios
             }
         }
 
-        public List<Tarefa> ListarTodos(Guid IdUsuario)
+        public List<Tarefa> Listar(Guid IdUsuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var tarefas = _context.Tarefas.Where(c => c.UsuarioId == IdUsuario);
+
+                return tarefas.ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+
+            }
         }
 
         public void Remover(Guid IdTarefa)
