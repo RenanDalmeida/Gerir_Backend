@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "30642711-0af3-4268-a193-a9659716d795",
+		"name": "Api Gerir",
+		"description": "Documentação da APi Gerir",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Get - APIUsuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIiwiZW1haWwiOiJyZGFsbWVpZGlAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQ29tdW0iLCJqdGkiOiI0MzkwMTUxYy1hMDJlLTQ1MGQtYmZiZi0yNmQxM2FhNDE3ZDUiLCJleHAiOjE2MDk5NTU2MjcsImlzcyI6ImdlcmlyLmNvbS5iciIsImF1ZCI6ImdlcmlyLmNvbS5iciJ9.AYUT84p7OVede_niZkGaH1Hh5eZ2LyVNek2ti_I26fE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Renan\",\r\n    \"email\" : \"rdalmeidi@gmail.com\",\r\n    \"senha\" : \"12345\",\r\n    \"tipo\" : \"Comum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Usuario",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post - APIUsuario - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"rdalmeidi@gmail.com\",\r\n    \"senha\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Usuario/logar",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Usuario",
+								"logar"
+							]
+						},
+						"description": "Endpoint para usuário efetuar login"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Api/usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIiwiZW1haWwiOiJyZGFsbWVpZEBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJDb211bSIsImp0aSI6IjViZGNmMWQwLTQ2MWUtNDgxYi05Y2RhLTIxZjU0MDQ5YmZiYiIsImV4cCI6MTYxMDEwODM3NiwiaXNzIjoiZ2VyaXIuY29tLmJyIiwiYXVkIjoiZ2VyaXIuY29tLmJyIn0.ZTlr2cpKdse06INPRqg3-WgsDJ87zOVMDV0GGDR7S1k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"5BDCF1D0-461E-481B-9CDA-21F54049BFBB\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Usuario",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put - Api/Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIiwiZW1haWwiOiJyZGFsbWVpZGlAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQ29tdW0iLCJqdGkiOiI0MzkwMTUxYy1hMDJlLTQ1MGQtYmZiZi0yNmQxM2FhNDE3ZDUiLCJleHAiOjE2MDk5NjI2ODUsImlzcyI6ImdlcmlyLmNvbS5iciIsImF1ZCI6ImdlcmlyLmNvbS5iciJ9.4C5AX0ZEZ_p1tMhlZpeW4rIp0IqhQdobURizsQsWsgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Abacate\",\r\n    \"email\" : \"rdalmed@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Usuario",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Usuario"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tarefa",
+			"item": [
+				{
+					"name": "Post - api/Tarefa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIEQnQWxtZWlkYSIsImVtYWlsIjoicmRhbG1laWRpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNvbXVtIiwianRpIjoiM2ZhODVmNjQtNTcxNy00NTYyLWIzZmMtMmM5NjNmNjZhZmE2IiwiZXhwIjoxNjEwMTA1NDg3LCJpc3MiOiJnZXJpci5jb20uYnIiLCJhdWQiOiJnZXJpci5jb20uYnIifQ.s-m6poGBvSekvj0xafAGKK453BmiCDC-nnlZUf-K3PA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titulo\": \"Tarefa3\",\r\n  \"categoria\": \"Cálculo\",\r\n  \"dataentrega\": \"2021-01-15T13:47:31.196Z\",\r\n  \"descricao\": \"Realizar lição\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Tarefa",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Tarefa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put - Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIEQnQWxtZWlkYSIsImVtYWlsIjoicmRhbG1laWRpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNvbXVtIiwianRpIjoiM2ZhODVmNjQtNTcxNy00NTYyLWIzZmMtMmM5NjNmNjZhZmE2IiwiZXhwIjoxNjEwMDQ4NTAyLCJpc3MiOiJnZXJpci5jb20uYnIiLCJhdWQiOiJnZXJpci5jb20uYnIifQ.UINhFzKQkRLBbvSWu4GFyv9N0V_SD1aD1fJspyxAM9o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Tarefa3\",\r\n    \"categoria\": \"Cálculo\",\r\n    \"dataentrega\": \"2021-01-12T13:47:31.197\",\r\n    \"status\": false,\r\n    \"descricao\": \"Descrição tarefa 3\",\r\n    \"usuarioId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Tarefa/8CB32E9F-7767-450B-B481-2B600B3CCED2",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Tarefa",
+								"8CB32E9F-7767-450B-B481-2B600B3CCED2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Remover",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIEQnQWxtZWlkYSIsImVtYWlsIjoicmRhbG1laWRpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNvbXVtIiwianRpIjoiM2ZhODVmNjQtNTcxNy00NTYyLWIzZmMtMmM5NjNmNjZhZmE2IiwiZXhwIjoxNjEwMDQ5MjY0LCJpc3MiOiJnZXJpci5jb20uYnIiLCJhdWQiOiJnZXJpci5jb20uYnIifQ.ZoFSEqtrB62HdIVKDwb-9KGwD1BtUkP6-L7-VAyYNSU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Tarefa/8CB32E9F-7767-450B-B481-2B600B3CCED2",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Tarefa",
+								"8CB32E9F-7767-450B-B481-2B600B3CCED2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - BuscarPorId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIEQnQWxtZWlkYSIsImVtYWlsIjoicmRhbG1laWRpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNvbXVtIiwianRpIjoiM2ZhODVmNjQtNTcxNy00NTYyLWIzZmMtMmM5NjNmNjZhZmE2IiwiZXhwIjoxNjEwMTA3ODcwLCJpc3MiOiJnZXJpci5jb20uYnIiLCJhdWQiOiJnZXJpci5jb20uYnIifQ.G7FfJZEhjE2xLGy9R3nnKH-UgSCE6cqnrdGK7HMHY40",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlhost}}/api/Tarefa/A8F13661-46DF-472D-8CD1-CA923F50C0A9",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Tarefa",
+								"A8F13661-46DF-472D-8CD1-CA923F50C0A9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put - AlterarStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIEQnQWxtZWlkYSIsImVtYWlsIjoicmRhbG1laWRpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNvbXVtIiwianRpIjoiM2ZhODVmNjQtNTcxNy00NTYyLWIzZmMtMmM5NjNmNjZhZmE2IiwiZXhwIjoxNjEwMTExMTAyLCJpc3MiOiJnZXJpci5jb20uYnIiLCJhdWQiOiJnZXJpci5jb20uYnIifQ.DOZPmdjhW-RBIol1wwa71jItkDtZ6Btk3yb1hCUuOpE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{urlhost}}/api/tarefa/status/C6354D4E-56BB-400E-B8D0-F5C6DF5AF20F",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"tarefa",
+								"status",
+								"C6354D4E-56BB-400E-B8D0-F5C6DF5AF20F"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get - Listar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IlJlbmFuIExvcGVzIEQnQWxtZWlkYSIsImVtYWlsIjoicmRhbG1laWRpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNvbXVtIiwianRpIjoiM2ZhODVmNjQtNTcxNy00NTYyLWIzZmMtMmM5NjNmNjZhZmE2IiwiZXhwIjoxNjEwMTExMTAyLCJpc3MiOiJnZXJpci5jb20uYnIiLCJhdWQiOiJnZXJpci5jb20uYnIifQ.DOZPmdjhW-RBIol1wwa71jItkDtZ6Btk3yb1hCUuOpE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlhost}}/api/Tarefa",
+							"host": [
+								"{{urlhost}}"
+							],
+							"path": [
+								"api",
+								"Tarefa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlhost",
+			"value": "http://localhost:5000"
+		}
+	]
+}

@@ -61,7 +61,7 @@ namespace Senai.Gerir.API.Controllers
                 //Caso exista retorna Sucess e os dados do usuário
                 var token = GerarJsonWebToken(usuarioexiste);
 
-                return Ok(token);
+                return Ok(new { token = token });
 
             }
 

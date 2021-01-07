@@ -87,7 +87,6 @@ namespace Senai.Gerir.API.Controllers
         //Endpoint Remover
         [Authorize]
         [HttpDelete("{IdTarefa}")]
-
         public IActionResult Remover(Guid IdTarefa)
         {
             try
