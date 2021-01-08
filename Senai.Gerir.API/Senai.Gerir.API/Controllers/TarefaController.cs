@@ -125,9 +125,9 @@ namespace Senai.Gerir.API.Controllers
 
                 //Atribui o usuário a tarefa
                 var tarefas = _tarefaRepositorio.Listar(
-                                        new System.Guid(usuarioid.Value)).ToList();
+                                        new System.Guid(usuarioid.Value));
 
-                return Ok(tarefas);
+                return Ok(new { data = tarefas });
             }
             catch (Exception ex)
             {
